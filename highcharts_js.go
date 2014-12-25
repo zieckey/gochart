@@ -1,8 +1,4 @@
-package gochart
-
-import (
-
-)
+package main
 
 var HighChartsJS = `
 /*
