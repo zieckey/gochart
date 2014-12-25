@@ -84,8 +84,8 @@ var PointLineHtml = `{{define "T"}}
     </head>
     <body>
     
-    <script>{{.HighChartsJS}}</script>
-    <script>{{.ModulesExportingJS}}</script>
+    <script type="text/javascript">{{.HighChartsJS}}</script>
+    <script type="text/javascript">{{.ModulesExportingJS}}</script>
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
     </body>
