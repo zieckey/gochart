@@ -7,7 +7,7 @@ var PointLineHtml = `{{define "T"}}
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Highcharts Example</title>
 
-        <script type="text/javascript">{{.JQuery183MinJS}}</script>
+        <script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
         <script type="text/javascript">
         $(function () {
             $('#container').highcharts({
@@ -60,6 +60,7 @@ var PointLineHtml = `{{define "T"}}
                 series: [
                 {{.DataArray}}
                 /*
+                // sample data is bellow
                 {
                     name: 'Tokyo',
                     data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
@@ -84,8 +85,9 @@ var PointLineHtml = `{{define "T"}}
     </head>
     <body>
     
-    <script type="text/javascript">{{.HighChartsJS}}</script>
-    <script type="text/javascript">{{.ModulesExportingJS}}</script>
+    <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/4.0.1/highcharts.js"></script>
+    <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/4.0.1/modules/exporting.js"></script>
+
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
     </body>
