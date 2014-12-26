@@ -1,10 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"github.com/bitly/go-simplejson"
 	"github.com/zieckey/goini"
-	"log"
 	"strconv"
 	"strings"
 )
@@ -15,8 +13,6 @@ type ColumnChart struct {
 }
 
 func (c *SplineChart) Parse(ini *goini.INI) (map[string]string, error) {
-	log.Printf("c=%v ini=%v\n", c, ini)
-
 	args := make(map[string]string)
 	args["ChartType"], _ = ini.Get("ChartType")
 	args["Title"], _ = ini.Get("Title")
@@ -36,12 +32,10 @@ func (c *SplineChart) Parse(ini *goini.INI) (map[string]string, error) {
 		dd := strings.Split(v, ", ")
 		jd := make([]interface{}, 0)
 		for _, d := range dd {
-
 			val, err := strconv.ParseFloat(d, 64)
 			if err == nil {
 				jd = append(jd, val)
 			}
-			log.Printf("ParseFloat(%v) v=%v err=%v\n", d, val, err)
 		}
 		json := simplejson.New()
 		json.Set("name", k[len(DataPrefix):])
@@ -54,8 +48,6 @@ func (c *SplineChart) Parse(ini *goini.INI) (map[string]string, error) {
 	b, _ := json.Get("DataArray").Encode()
 	args["DataArray"] = string(b)
 
-	fmt.Printf("DataArray:\n%v\n", string(b))
-	fmt.Printf("=========================================================>>Args:\n%v\n", args)
 	return args, nil
 }
 
