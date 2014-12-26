@@ -34,13 +34,13 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		"ChartType" : "spline",
 		"Title" : "Monthly Average Temperature",
 		"SubTitle" : "Source: WorldClimate.com",
-		"YAxisName" : "Temperature (°C)",
-		"XAxisNames" : "['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']",
+		"YAxisText" : "Temperature (°C)",
+		"XAxisNumbers" : "['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']",
 		"ValueSuffix" : "°C",
 		"DataArray" : DataArray,
 	}
 	
-	if t, err := template.New("foo").Parse(PointLineHtml); err != nil {
+	if t, err := template.New("foo").Parse(SplineHtml); err != nil {
 		w.Write([]byte(err.Error()))
 	} else {
 		if err = t.ExecuteTemplate(w, "T", Args); err != nil {

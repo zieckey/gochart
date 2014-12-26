@@ -1,6 +1,8 @@
 package main
 
-var PointLineHtml = `{{define "T"}}
+// see the resource of : http://www.freecdn.cn/libs/highcharts/
+
+var SplineHtml = `{{define "T"}}
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -25,21 +27,19 @@ var PointLineHtml = `{{define "T"}}
                 title: {
                     // text: 'Monthly Average Temperature',
                     text: '{{.Title}}',
-                    //x: -20 //center
                 },
                 subtitle: {
                     // text: 'Source: WorldClimate.com',
                     text: '{{.SubTitle}}',
-                    //x: -20
                 },
                 xAxis: {
                     // categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
-                    categories: {{.XAxisNames}} // JSONArray格式，字符串，与x轴上点数的个数一致，
+                    categories: {{.XAxisNumbers}} // JSONArray格式，数字，与x轴上点数的个数一致，
                 },
                 yAxis: {
                     title: {
                         // text: 'Temperature (°C)'
-                        text: '{{.YAxisName}}'
+                        text: '{{.YAxisText}}'
                     },
                     plotLines: [{
                         value: 0,
