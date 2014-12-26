@@ -27,7 +27,7 @@ func (c *PieChart) Parse(ini *goini.INI) (map[string]string, error) {
 		}
 		
 		key := k[len(DataPrefix):]
-		DataArray = DataArray + "['" + key + "' : " + v + "],\n"
+		DataArray = DataArray + "['" + key + "' , " + v + "],\n"
 	}
 
 	DataArray = DataArray + "]"
