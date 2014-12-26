@@ -1,12 +1,12 @@
-ChartType = pie
-Title = Browser market shares at a specific website, 2014
-SubTitle = from website.com
-SerieName = Browser shares
+ChartType  = pie
+Title 	   = Browser market shares at a specific website, 2014
+SubTitle   = from website.com
+SeriesName = Browser shares
 
 # The data and the name of the pieces of the pie 
-Data|Firefox =   45.0
-Data|IE =       26.8
-Data|Chrome =  12.8
-Data|Safari =    8.5
-Data|Opera =     6.2
-Data|Others =   0.7
+Data|Firefox = 45.0
+Data|IE 	 = 26.8
+Data|Chrome  = 12.8
+Data|Safari  = 8.5
+Data|Opera   = 6.2
+Data|Others  = 0.7

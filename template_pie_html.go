@@ -46,7 +46,7 @@ var TemplatePieHtml = `{{define "T"}}
                 },
                 series: [{
                     // name: 'Browser share',
-                    name : '{{.SerieName}}',
+                    name : '{{.SeriesName}}',
                     data: 
                     	{{.DataArray}}
                     /*
