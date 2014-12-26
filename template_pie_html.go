@@ -2,7 +2,7 @@ package main
 
 // see the resource of : http://www.freecdn.cn/libs/highcharts/
 
-var PieHtml = `{{define "T"}}
+var TemplatePieHtml = `{{define "T"}}
 <!DOCTYPE HTML>
 <html>
     <head>
