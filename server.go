@@ -7,7 +7,8 @@ import (
 	"text/template"
 )
 
-var DataArray = `
+var SplineDataArray = `
+			[
 	            {
 	                name: 'Tokyo',
 	                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
@@ -24,10 +25,24 @@ var DataArray = `
 	                name: 'London',
 	                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
 	            }
+	        ]
 `
 
+var PieDataArray = `
+                    [
+                        ['Firefox',   45.0],
+                        ['IE',       26.8],
+                        ['Chrome',  12.8],
+                        ['Safari',    8.5],
+                        ['Opera',     6.2],
+                        ['Others',   0.7]
+                    ]
+`
+
+var Index = 1
+
 func handler(w http.ResponseWriter, r *http.Request) {
-	var Args = map[string]string{
+	var ArgsSpline = map[string]string {
 		"HighChartsJS": HighChartsJS,
 		"JQuery183MinJS" : JQuery183MinJS,
 		"ModulesExportingJS" : ModulesExportingJS,
@@ -37,13 +52,31 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		"YAxisText" : "Temperature (°C)",
 		"XAxisNumbers" : "['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']",
 		"ValueSuffix" : "°C",
-		"DataArray" : DataArray,
+		"DataArray" : SplineDataArray,
 	}
 	
-	if t, err := template.New("foo").Parse(SplineHtml); err != nil {
+	var ArgsPie = map[string]string {
+		"HighChartsJS": HighChartsJS,
+		"JQuery183MinJS" : JQuery183MinJS,
+		"ModulesExportingJS" : ModulesExportingJS,
+		"ChartType" : "pie",
+		"Title" : "Browser market shares at a specific website, 2014",
+		"SubTitle" : "Source: website.com",
+		"SerieName" : "Browser shares",
+		"DataArray" : PieDataArray,
+	}
+		
+	var Args * map[string]string
+	if t, err := template.New("foo").Parse(PieHtml); err != nil {
 		w.Write([]byte(err.Error()))
 	} else {
-		if err = t.ExecuteTemplate(w, "T", Args); err != nil {
+		if Index % 2 == 0 {
+			Args = &ArgsSpline
+		} else {
+			Args = &ArgsPie
+		}
+Args = &ArgsPie
+		if err = t.ExecuteTemplate(w, "T", *Args); err != nil {
 			w.Write([]byte(err.Error()))
 		}
 	}
