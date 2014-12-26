@@ -1,8 +1,8 @@
 package main
 
 import (
-	//	"errors"
-	//	"fmt"
+	"errors"
+	//"fmt"
 	"net/http"
 	"text/template"
 )
@@ -39,54 +39,66 @@ var PieDataArray = `
                     ]
 `
 
-var Index = 1
+var ArgsSpline = map[string]string{
+	"ChartType":    "spline",
+	"Title":        "Monthly Average Temperature",
+	"SubTitle":     "Source: WorldClimate.com",
+	"YAxisText":    "Temperature (°C)",
+	"XAxisNumbers": "['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']",
+	"ValueSuffix":  "°C",
+	"DataArray":    SplineDataArray,
+}
+
+var ArgsColumn = map[string]string{
+
+	"ChartType":    "column",
+	"Title":        "Monthly Average Temperature",
+	"SubTitle":     "Source: WorldClimate.com",
+	"YAxisText":    "Temperature (°C)",
+	"XAxisNumbers": "['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']",
+	"ValueSuffix":  "°C",
+	"DataArray":    SplineDataArray,
+}
+
+var ArgsPie = map[string]string{
+
+	"ChartType": "pie",
+	"Title":     "Browser market shares at a specific website, 2014",
+	"SubTitle":  "Source: website.com",
+	"SerieName": "Browser shares",
+	"DataArray": PieDataArray,
+}
+
+var (
+	ChartHandlers = make(map[string]ChartIf)
+	ChartFiles    []string
+	Index         int
+)
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	var ArgsSpline = map[string]string{
-		"HighChartsJS":       HighChartsJS,
-		"JQuery183MinJS":     JQuery183MinJS,
-		"ModulesExportingJS": ModulesExportingJS,
-		"ChartType":          "spline",
-		"Title":              "Monthly Average Temperature",
-		"SubTitle":           "Source: WorldClimate.com",
-		"YAxisText":          "Temperature (°C)",
-		"XAxisNumbers":       "['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']",
-		"ValueSuffix":        "°C",
-		"DataArray":          SplineDataArray,
+	var Args map[string]string
+	var tmpl string
+
+	Args = ArgsColumn
+	Args = ArgsSpline
+	Args = ArgsPie
+	tmpl = TemplatePieHtml
+
+	path := r.URL.Path[1:]
+	if path == "spline" {
+		tmplagrs, err := Parse(ChartFiles[Index])
+		Index++
+		Index = Index % len(ChartFiles)
+		if err == nil {
+			Args = tmplagrs.args
+			tmpl = TemplateSplineHtml
+		}
 	}
 
-	var ArgsColumn = map[string]string{
-		"HighChartsJS":       HighChartsJS,
-		"JQuery183MinJS":     JQuery183MinJS,
-		"ModulesExportingJS": ModulesExportingJS,
-		"ChartType":          "column",
-		"Title":              "Monthly Average Temperature",
-		"SubTitle":           "Source: WorldClimate.com",
-		"YAxisText":          "Temperature (°C)",
-		"XAxisNumbers":       "['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']",
-		"ValueSuffix":        "°C",
-		"DataArray":          SplineDataArray,
-	}
-
-	var ArgsPie = map[string]string{
-		"HighChartsJS":       HighChartsJS,
-		"JQuery183MinJS":     JQuery183MinJS,
-		"ModulesExportingJS": ModulesExportingJS,
-		"ChartType":          "pie",
-		"Title":              "Browser market shares at a specific website, 2014",
-		"SubTitle":           "Source: website.com",
-		"SerieName":          "Browser shares",
-		"DataArray":          PieDataArray,
-	}
-
-	var Args *map[string]string
-	if t, err := template.New("foo").Parse(TemplatePieHtml); err != nil {
+	if t, err := template.New("foo").Parse(tmpl); err != nil {
 		w.Write([]byte(err.Error()))
 	} else {
-		Args = &ArgsColumn
-		Args = &ArgsSpline
-		Args = &ArgsPie
-		if err = t.ExecuteTemplate(w, "T", *Args); err != nil {
+		if err = t.ExecuteTemplate(w, "T", Args); err != nil {
 			w.Write([]byte(err.Error()))
 		}
 	}
@@ -96,15 +108,16 @@ func ListenAndServe(addr string) error {
 	http.HandleFunc("/", handler)
 	http.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {})
 
-	//	var err error
-	//	ChartFiles, err = LookupCurrentDir(".")
-	//	if err != nil {
-	//		return err
-	//	}
-	//
-	//	if len(ChartFiles) == 0 {
-	//		return errors.New("No chart data.")
-	//	}
+	var err error
+	ChartFiles, err = LookupChartFiles(".")
+	if err != nil {
+		return err
+	}
+	if len(ChartFiles) == 0 {
+		return errors.New("No chart data.")
+	}
+
+	ChartHandlers["spline"] = new(SplineChart)
 
 	return http.ListenAndServe(addr, nil)
 }

@@ -34,7 +34,7 @@ var TemplateSplineHtml = `{{define "T"}}
                 },
                 xAxis: {
                     // categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
-                    categories: {{.XAxisNumbers}} // JSONArray格式，数字，与x轴上点数的个数一致，
+                    categories: [{{.XAxisNumbers}}] // JSONArray格式，数字，与x轴上点数的个数一致，
                 },
                 yAxis: {
                     title: {
