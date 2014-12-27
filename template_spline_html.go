@@ -2,6 +2,7 @@ package main
 
 // see the resource of : http://www.freecdn.cn/libs/highcharts/
 
+// spline,line,column,area,bar
 var TemplateSplineHtml = `{{define "T"}}
 <!DOCTYPE HTML>
 <html>

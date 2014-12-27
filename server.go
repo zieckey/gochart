@@ -46,7 +46,10 @@ func ListenAndServe(addr string) error {
 	}
 
 	ChartHandlers["spline"] = new(SplineChart)
-	ChartHandlers["column"] = new(ColumnChart)
+	ChartHandlers["column"] = new(SplineChart)
+	ChartHandlers["area"] = new(SplineChart)
+	ChartHandlers["bar"] = new(SplineChart)
+	ChartHandlers["line"] = new(SplineChart)
 	ChartHandlers["pie"] = new(PieChart)
 
 	return http.ListenAndServe(addr, nil)

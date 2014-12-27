@@ -8,9 +8,6 @@ import (
 )
 
 type SplineChart int
-type ColumnChart struct {
-	SplineChart
-}
 
 func (c *SplineChart) Parse(ini *goini.INI) (map[string]string, error) {
 	args := make(map[string]string)
