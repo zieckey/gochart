@@ -1,81 +1,92 @@
 gochart
 =======
 
-gochart仿照[goplot](https://github.com/skoo87/goplot)使用golang和[highcharts](http://www.highcharts.com)开源库制作的，是一个使用简单的绘制图表的工具，图表风格有曲线图、折线图、面积图、柱状图、饼图等。编译好的gochart只有一个二进制文件，不依赖任何库/网络。
+[中文说明]()
 
-##### 直接下载二进制
 
-[Win7 amd64](download/win64/gochart.tar.gz)
+[gochart](https://github.com/zieckey/gochart) is a chart ploting tool which is simple to use. It used the open sources [golang](https://golang.org) and [highcharts](http://www.highcharts.com) which is modeled after [goplot](https://github.com/skoo87/goplot). It can plot spline/line/area/bar/column/pie. This tool is just a binary independent with any other lib or environment.
 
-#####　从源码安装
+### Dependent
 
-直接只用命令`go get -u github.com/zieckey/gochart`即可。
+- [https://github.com/zieckey/goini](https://github.com/zieckey/goini)
+- [https://github.com/bitly/go-simplejson](https://github.com/bitly/go-simplejson)
 
-##### 使用方法
+### Download the binary
 
-* 解压下载包后，进入解压目录，可以看到一个gochart的可执行文件和一些*.chart文件，这些chart文件是默认的一些数据文件样例。可以在这些chart文件的目录执行gochart，然后通过浏览器访问http://localhost:8000就可以看到图表了。
-* 可以把`gochart`工具放到您的`PATH`中，在*.chart文件所在的目录执行gochart即可。
-* chart文件必须是.chart后缀名，内容可以参考源码examples目录中的例子。启动gochart的目录如果有多个chart文件，可以通过不断刷新网页来切换图表。
+[Win7 amd64](https://raw.githubusercontent.com/zieckey/gochart/master/download/win64/gochart.tar.gz)
 
-##### 曲线图数据格式示例1
+### Install from resource
 
-    # The chart type , option : spline/line/bar/column/area
-    ChartType = spline
-    Title = Source: WorldClimate.com
-    SubTitle = Monthly Average Temperature
-    ValueSuffix = °C
-    
-    # The x Axis numbers. The count this numbers MUST be the same with the data series
-    XAxisNumbers = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
-    
-    # The y Axis text
-    YAxisText = Temperature (°C)
-    
-    # The data and the name of the lines
-    Data|Tokyo = 7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6
-    Data|New York = -0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5
-    Data|Berlin = -0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0
-    Data|London = 3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8
-   
-该示例数据格式与曲线图、折线图、面积图、(横向/纵向)柱状图通用。通过改变`ChartType`可以展现不同类型的图，如下：
-- spline 曲线图
-- line 折线图
-- bar 横向柱状图
-- column 纵向柱状图
-- area 面积图
+- Install go
+- Execute the command : `go get -u github.com/zieckey/gochart`
 
-##### 曲线图数据格式示例2
+### Usage
 
-    ChartType  = pie
-    Title 	   = Browser market shares at a specific website, 2014
-    SubTitle   = from website.com
-    SeriesName = Browser shares
-    
-    # The data and the name of the pieces of the pie 
-    Data|Firefox = 45.0
-    Data|IE 	 = 26.8
-    Data|Chrome  = 12.8
-    Data|Safari  = 8.5
-    Data|Opera   = 6.2
-    Data|Others  = 0.7    
+* Download the binary tar.gz file and untar it. Enter the gochart directory, you can see an executable file `gochart` and some *.chart files. This chart files are the example data files. Execute the exe `gochart`, then you can open your browser and navigate to [http://localhost:8000](http://localhost:8000), and now you can see the charts.
+* You can put `gochart` to your `PATH` environment and execute `gochart` in the directory which holds *.chart files. If you have several *.chart files, you can refresh the web page to plot diffrent chart.
 
-该示例数据格式展示了如何绘制一个饼图。
+### Example 1 : Spline data format 
+  
+This data format can be also used to plot line/bar/column/area when you can change the value of `ChartType`. The option value of `ChartType` is below : 
 
-##### 曲线图
-![](image/spline.png)
+- spline
+- line
+- bar
+- column
+- area
 
-##### 饼图
-![](image/pie.png)
+```go
+# The chart type , option : spline/line/bar/column/area
+ChartType = spline
+Title = Source: WorldClimate.com
+SubTitle = Monthly Average Temperature
+ValueSuffix = °C
 
-##### 纵向柱状图
-![](image/column.png)
+# The x Axis numbers. The count this numbers MUST be the same with the data series
+XAxisNumbers = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 
-##### 面积图
-![](image/area.png)
+# The y Axis text
+YAxisText = Temperature (°C)
 
-##### 折线图
-![](image/line.png)
+# The data and the name of the lines
+Data|Tokyo = 7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6
+Data|New York = -0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5
+Data|Berlin = -0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0
+Data|London = 3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8
+```
 
-##### 横向柱状图
-![](image/bar.png)
 
+### Example 1 : Pie chart
+
+```go
+ChartType  = pie
+Title 	   = Browser market shares at a specific website, 2014
+SubTitle   = from website.com
+SeriesName = Browser shares
+
+# The data and the name of the pieces of the pie 
+Data|Firefox = 45.0
+Data|IE 	 = 26.8
+Data|Chrome  = 12.8
+Data|Safari  = 8.5
+Data|Opera   = 6.2
+Data|Others  = 0.7    
+```
+
+### Spline
+![](https://raw.githubusercontent.com/zieckey/gochart/master/image/spline.png)
+
+### Pie
+![](https://raw.githubusercontent.com/zieckey/gochart/master/image/pie.png)
+
+### Column
+![](https://raw.githubusercontent.com/zieckey/gochart/master/image/column.png)
+
+###　Area
+![](https://raw.githubusercontent.com/zieckey/gochart/master/image/area.png)
+
+### Line
+![](https://raw.githubusercontent.com/zieckey/gochart/master/image/line.png)
+
+### Bar
+![](https://raw.githubusercontent.com/zieckey/gochart/master/image/bar.png)
