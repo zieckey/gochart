@@ -13,6 +13,17 @@ func (c *PieChart) Parse(ini *goini.INI) (map[string]string, error) {
 	args["Title"], _ = ini.Get("Title")
 	args["SubTitle"], _ = ini.Get("SubTitle")
 	args["SeriesName"], _ = ini.Get("SeriesName")
+
+/* Generate DataArray:
+    [
+        ['Firefox',   45.0],
+        ['IE',       26.8],
+        ['Chrome',  12.8],
+        ['Safari',    8.5],
+        ['Opera',     6.2],
+        ['Others',   0.7]
+    ]
+*/	
 	
 	DataArray := "[\n"
 	kv, _ := ini.GetKvmap(goini.DefaultSection)
@@ -34,4 +45,3 @@ func (c *PieChart) Parse(ini *goini.INI) (map[string]string, error) {
 func (c *PieChart) Template() string {
 	return TemplatePieHtml
 }
-
