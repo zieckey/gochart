@@ -3,18 +3,18 @@ gochart
 
 gochart仿照[goplot](https://github.com/skoo87/goplot)使用golang和[highcharts](http://www.highcharts.com)开源库制作的，是一个使用简单的绘制图表的工具，图表风格有曲线图、折线图、面积图、柱状图、饼图等。编译好的gochart只有一个二进制文件，不依赖任何库/网络。
 
-##### 下 载
+##### 直接下载二进制
 
-[Mac OS X](http://www.bigendian123.com/gochart-darwin.tar.gz)
+[Win7 amd64](download/win64/gochart.zip)
 
-[Linux amd64](http://www.bigendian123.com/gochart-linux-amd64.tar.gz)
+#####　从源码安装
 
-[Win7 amd64](download/bin/gochart.exe)
+直接只用命令`go get -u github.com/zieckey/gochart`即可。
 
 ##### 使用方法
 
 * 解压下载包后，进入解压目录，可以看到一个gochart的可执行文件和一些*.chart文件，这些chart文件是默认的一些数据文件样例。可以在这些chart文件的目录执行gochart，然后通过浏览器访问http://localhost:8000就可以看到图表了。
-* 你可以把`gochart`工具放到你的`PATH`中，在chart文件所在的目录执行gochart即可。
+* 可以把`gochart`工具放到您的`PATH`中，在*.chart文件所在的目录执行gochart即可。
 * chart文件必须是.chart后缀名，内容可以参考源码examples目录中的例子。启动gochart的目录如果有多个chart文件，可以通过不断刷新网页来切换图表。
 
 ##### 曲线图数据格式示例1
