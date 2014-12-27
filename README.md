@@ -5,7 +5,7 @@ gochart仿照[goplot](https://github.com/skoo87/goplot)使用golang和[highchart
 
 ##### 直接下载二进制
 
-[Win7 amd64](download/win64/gochart.zip)
+[Win7 amd64](download/win64/gochart.tar.gz)
 
 #####　从源码安装
 
@@ -64,17 +64,18 @@ gochart仿照[goplot](https://github.com/skoo87/goplot)使用golang和[highchart
 ##### 曲线图
 ![](image/spline.png)
 
-##### 折线图
-![](image/line.png)
+##### 饼图
+![](image/pie.png)
 
 ##### 纵向柱状图
 ![](image/column.png)
 
-##### 横向柱状图
-![](image/bar.png)
-
 ##### 面积图
 ![](image/area.png)
 
-##### 饼图
-![](image/pie.png)
+##### 折线图
+![](image/line.png)
+
+##### 横向柱状图
+![](image/bar.png)
+

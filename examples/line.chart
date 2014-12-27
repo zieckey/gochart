@@ -1,4 +1,4 @@
-ChartType = area
+ChartType = line
 Title = Source: WorldClimate.com
 SubTitle = Monthly Average Temperature
 ValueSuffix = °C
