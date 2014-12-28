@@ -22,3 +22,5 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+download/win64/gochart/

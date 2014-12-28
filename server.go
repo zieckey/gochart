@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	//"fmt"
 	"net/http"
 	"text/template"
@@ -19,7 +18,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(err.Error()))
 		return
 	}
-	
+
 	Index++
 	Index = Index % len(ChartFiles)
 
@@ -41,10 +40,8 @@ func ListenAndServe(addr string) error {
 	if err != nil {
 		return err
 	}
-	if len(ChartFiles) == 0 {
-		return errors.New("No chart data.")
-	}
 
+	// Register chart handlders
 	ChartHandlers["spline"] = new(SplineChart)
 	ChartHandlers["column"] = new(SplineChart)
 	ChartHandlers["area"] = new(SplineChart)

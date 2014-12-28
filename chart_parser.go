@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"github.com/zieckey/goini"
 	"os"
 	"path/filepath"
@@ -53,6 +54,10 @@ func LookupChartFiles(dir string) ([]string, error) {
 		}
 		return nil
 	})
+
+	if len(files) == 0 {
+		return files, errors.New("Not found any *.chart files")
+	}
 
 	return files, err
 }
