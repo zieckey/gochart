@@ -1,8 +1,7 @@
 gochart
 =======
 
-[中文说明]()
-
+[中文说明](http://blog.codeg.cn/2014/12/27/gochart-info/)
 
 [gochart](https://github.com/zieckey/gochart) is a chart ploting tool which is simple to use. It used the open sources [golang](https://golang.org) and [highcharts](http://www.highcharts.com) which is modeled after [goplot](https://github.com/skoo87/goplot). It can plot spline/line/area/bar/column/pie. This tool is just a binary independent with any other lib or environment.
 
