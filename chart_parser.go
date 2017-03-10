@@ -5,6 +5,7 @@ import (
 	"github.com/zieckey/goini"
 	"os"
 	"path/filepath"
+	"log"
 )
 
 const DataPrefix = "Data|"
@@ -50,6 +51,7 @@ func LookupChartFiles(dir string) ([]string, error) {
 		if ok, err := filepath.Match("*.chart", f.Name()); err != nil {
 			return err
 		} else if ok {
+			log.Printf("Add chart file %v", path)
 			files = append(files, path)
 		}
 		return nil

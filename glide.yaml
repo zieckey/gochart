@@ -1,0 +1,4 @@
+package: github.com/zieckey/gochart
+import:
+- package: github.com/bitly/go-simplejson
+- package: github.com/zieckey/goini

@@ -26,9 +26,10 @@ func (c *SplineChart) Parse(ini *goini.INI) (map[string]string, error) {
 			continue
 		}
 
-		dd := strings.Split(v, ", ")
+		dd := strings.Split(v, ",")
 		jd := make([]interface{}, 0)
 		for _, d := range dd {
+			d = strings.TrimSpace(d)
 			val, err := strconv.ParseFloat(d, 64)
 			if err == nil {
 				jd = append(jd, val)
