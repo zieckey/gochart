@@ -66,7 +66,7 @@ var TemplatePieHtml = `{{define "T"}}
 		</script>
     </head>
     <body>
-    By <a id="copyright" class="anchor" href="http://blog.codeg.cn/2014/12/13/Hello-CodeG/" >zieckey@codeg.cn</a>
+    By <a id="copyright" class="anchor" href="http://blog.codeg.cn/2014/12/13/Hello-CodeG/" >zieckey@gmail.com</a>
     
     <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/4.0.1/highcharts.js"></script>
     <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/4.0.1/modules/exporting.js"></script>
