@@ -10,10 +10,6 @@ gochart
 - [https://github.com/zieckey/goini](https://github.com/zieckey/goini)
 - [https://github.com/bitly/go-simplejson](https://github.com/bitly/go-simplejson)
 
-### Download the binary
-
-[Win7 amd64](https://raw.githubusercontent.com/zieckey/gochart/master/download/win64/gochart.tar.gz)
-
 ### Install from resource
 
 - Install go
@@ -76,19 +72,19 @@ Data|Others  = 0.7
 ```
 
 ### Spline
-![](https://raw.githubusercontent.com/zieckey/gochart/master/image/spline.png)
+![](image/spline.png)
 
 ### Pie
-![](https://raw.githubusercontent.com/zieckey/gochart/master/image/pie.png)
+![](image/pie.png)
 
 ### Column
-![](https://raw.githubusercontent.com/zieckey/gochart/master/image/column.png)
+![](image/column.png)
 
 ###　Area
-![](https://raw.githubusercontent.com/zieckey/gochart/master/image/area.png)
+![](image/area.png)
 
 ### Line
-![](https://raw.githubusercontent.com/zieckey/gochart/master/image/line.png)
+![](image/line.png)
 
 ### Bar
-![](https://raw.githubusercontent.com/zieckey/gochart/master/image/bar.png)
+![](image/bar.png)
