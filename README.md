@@ -41,6 +41,9 @@ Title = Source: WorldClimate.com
 SubTitle = Monthly Average Temperature
 ValueSuffix = °C
 
+# The height (px) of the chart
+Height = 400
+
 # The x Axis numbers. The count this numbers MUST be the same with the data series
 XAxisNumbers = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 

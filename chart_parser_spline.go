@@ -17,6 +17,7 @@ func (c *SplineChart) Parse(ini *goini.INI) (map[string]string, error) {
 	args["YAxisText"], _ = ini.Get("YAxisText")
 	args["XAxisNumbers"], _ = ini.Get("XAxisNumbers")
 	args["ValueSuffix"], _ = ini.Get("ValueSuffix")
+	args["Height"], _ = ini.Get("Height")
 
 	datas := make([]interface{}, 0)
 

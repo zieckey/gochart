@@ -90,7 +90,7 @@ var TemplateSplineHtml = `{{define "T"}}
     <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/4.0.1/highcharts.js"></script>
     <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/4.0.1/modules/exporting.js"></script>
 
-    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div id="container" style="min-width: 310px; height: {{.Height}}px; margin: 0 auto"></div>
 
     </body>
 </html>
