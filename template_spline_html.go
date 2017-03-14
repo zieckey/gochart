@@ -9,7 +9,7 @@ var TemplateSplineHtml = `{{define "T"}}
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Gochart - {{.ChartType}} | CodeG.cn</title>
-
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
         <script type="text/javascript">
         $(function () {
@@ -89,10 +89,35 @@ var TemplateSplineHtml = `{{define "T"}}
     By <a id="copyright" class="anchor" href="http://blog.codeg.cn/2014/12/13/Hello-CodeG/" >zieckey@gmail.com</a>
     <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/4.0.1/highcharts.js"></script>
     <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/4.0.1/modules/exporting.js"></script>
-
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <div id="container" style="min-width: 310px; height: {{.Height}}px; margin: 0 auto"></div>
 
-    </body>
+<script type ="text/javascript">
+$(function(){
+	var s = {{.DataArray}};
+	var objstr = "";
+	dataindex = 0;
+	$(s).each(function(i,item){
+		 dataindex = item.data.length;
+		 var index = i+1;
+		 objstr +='<tr><th scope="row">'+index+'</th><td>'+item.name+'</td>'
+		 $(item.data).each(function(n,info){
+		     objstr += '<td>'+info+'</td>';
+		 });
+		 objstr += "</tr>";
+	});
+
+	
+	$("#tb").html(objstr);
+
+})
+</script>
+
+<table id="tb"  class="table table-hover table-striped table-bordered">
+  	
+    </table>
+    
+</body>
 </html>
 {{end}}
 `
