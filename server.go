@@ -4,6 +4,8 @@ import (
 	//"fmt"
 	"net/http"
 	"text/template"
+	"strconv"
+	"log"
 )
 
 var (
@@ -13,14 +15,23 @@ var (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
+	values := r.URL.Query()
+	i := values.Get("index")
+	if len(i) > 0 {
+		Index, _ = strconv.Atoi(i)
+	} else {
+		Index++
+	}
+
+	Index = Index % len(ChartFiles)
+
+	log.Printf("Index=%v rendering %v", Index, ChartFiles[Index])
 	tt, err := Parse(ChartFiles[Index])
 	if err != nil {
 		w.Write([]byte(err.Error()))
 		return
 	}
 
-	Index++
-	Index = Index % len(ChartFiles)
 
 	if t, err := template.New("foo").Parse(tt.tmpl); err != nil {
 		w.Write([]byte(err.Error()))
