@@ -3,13 +3,14 @@ package main
 import (
 	"github.com/bitly/go-simplejson"
 	"github.com/zieckey/goini"
+	"log"
 	"strconv"
 	"strings"
 )
 
 type SplineChart int
 
-func (c *SplineChart) Parse(ini *goini.INI) (map[string]string, error) {
+func (c *SplineChart) Parse(ini *goini.INI, file string) (map[string]string, error) {
 	args := make(map[string]string)
 	args["ChartType"], _ = ini.Get("ChartType")
 	args["Title"], _ = ini.Get("Title")
@@ -21,13 +22,17 @@ func (c *SplineChart) Parse(ini *goini.INI) (map[string]string, error) {
 
 	datas := make([]interface{}, 0)
 
-	kv, _ := ini.GetKvmap(goini.DefaultSection)
-	for k, v := range kv {
-		if !strings.HasPrefix(k, DataPrefix) {
+	mapkeys, kvmap, err := LoadConfGetOrderMap(file)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, key := range mapkeys {
+		if !strings.HasPrefix(key, DataPrefix) {
 			continue
 		}
 
-		dd := strings.Split(v, ",")
+		dd := strings.Split(kvmap[key], ",")
 		jd := make([]interface{}, 0)
 		for _, d := range dd {
 			d = strings.TrimSpace(d)
@@ -37,7 +42,7 @@ func (c *SplineChart) Parse(ini *goini.INI) (map[string]string, error) {
 			}
 		}
 		json := simplejson.New()
-		json.Set("name", k[len(DataPrefix):])
+		json.Set("name", key[len(DataPrefix):])
 		json.Set("data", jd)
 		datas = append(datas, json)
 	}
@@ -46,7 +51,7 @@ func (c *SplineChart) Parse(ini *goini.INI) (map[string]string, error) {
 	json.Set("DataArray", datas)
 	b, _ := json.Get("DataArray").Encode()
 	args["DataArray"] = string(b)
-
+	log.Println(args)
 	return args, nil
 }
 
