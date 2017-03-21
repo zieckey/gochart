@@ -2,12 +2,13 @@ package main
 
 import (
 	"errors"
-	"github.com/zieckey/goini"
 	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/zieckey/goini"
 )
 
 const DataPrefix = "Data|"
@@ -24,7 +25,6 @@ type TemplateArgs struct {
 }
 
 func Parse(file string) (tt TemplateArgs, err error) {
-	log.Printf("Rendering %v", file)
 	ini := goini.New()
 	err = ini.ParseFile(file)
 	if err != nil {

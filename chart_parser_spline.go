@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/bitly/go-simplejson"
-	"github.com/zieckey/goini"
-	"log"
 	"strconv"
 	"strings"
+
+	"github.com/bitly/go-simplejson"
+	"github.com/zieckey/goini"
 )
 
 type SplineChart int
@@ -51,7 +51,7 @@ func (c *SplineChart) Parse(ini *goini.INI, file string) (map[string]string, err
 	json.Set("DataArray", datas)
 	b, _ := json.Get("DataArray").Encode()
 	args["DataArray"] = string(b)
-	log.Println(args)
+	//log.Println(args)
 	return args, nil
 }
 
