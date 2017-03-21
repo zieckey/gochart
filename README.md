@@ -73,7 +73,7 @@ Data|Others  = 0.7
 ```
 
 ### Spline
-<<<<<<< HEAD
+
 ![](image/spline.png)
 
 ### Pie
@@ -90,21 +90,4 @@ Data|Others  = 0.7
 
 ### Bar
 ![](image/bar.png)
-=======
-![](https://raw.githubusercontent.com/zieckey/gochart/master/image/spline.png)
 
-### Pie
-![](https://raw.githubusercontent.com/zieckey/gochart/master/image/pie.png)
-
-### Column
-![](https://raw.githubusercontent.com/zieckey/gochart/master/image/column.png)
-
-###　Area
-![](https://raw.githubusercontent.com/zieckey/gochart/master/image/area.png)
-
-### Line
-![](https://raw.githubusercontent.com/zieckey/gochart/master/image/line.png)
-
-### Bar
-![](https://raw.githubusercontent.com/zieckey/gochart/master/image/bar.png)
->>>>>>> d1ed0a437c116029e13d845f8edb8b25d2c78d33
